@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S-UEM3 PRO — MacBook Fault Diagnostic Tester | SoFix</title>
+
+<!-- SEO -->
+<meta name="description" content="S-UEM3 PRO is a professional MacBook motherboard connector fault detector. Covers 2016–2025 MacBook Air & Pro — T1, T2, M1, M2, M3, M4. Diagnose USB-C, display, camera, and backlight faults in seconds.">
+<meta name="keywords" content="MacBook fault detector, logic board repair, MacBook diagnostic tool, EDP connector tester, USB-C fault, MacBook repair tool, S-UEM3 PRO, SoFix">
+
+<!-- Open Graph (Facebook, WhatsApp, WeChat, LINE) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://itslh1024.github.io/s-uem3-pro">
+<meta property="og:title" content="S-UEM3 PRO — MacBook Fault Diagnostic Tester">
+<meta property="og:description" content="Stop guessing. Start repairing. Professional connector fault detector for 2016–2025 MacBook. Covers T1, T2, M1–M4. Detects HIGH / LOW / SHORT CIRCUIT instantly.">
+<meta property="og:image" content="https://itslh1024.github.io/s-uem3-pro/1_01.jpg">
+<meta property="og:image:width" content="800">
+<meta property="og:image:height" content="800">
+<meta property="og:site_name" content="SoFix">
+
+<!-- Twitter / X Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="S-UEM3 PRO — MacBook Fault Diagnostic Tester">
+<meta name="twitter:description" content="Professional connector fault detector for 2016–2025 MacBook. Covers T1, T2, M1–M4.">
+<meta name="twitter:image" content="https://itslh1024.github.io/s-uem3-pro/1_01.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #0a0d14;
+    --ink-mid: #1c2130;
+    --ink-soft: #3d4560;
+    --mist: #f4f5f7;
+    --white: #ffffff;
+    --accent: #0057ff;
+    --accent-glow: rgba(0,87,255,0.15);
+    --accent-dim: #003db3;
+    --green: #00c96b;
+    --red: #ff3b3b;
+    --amber: #ffb300;
+    --border: rgba(10,13,20,0.08);
+    --border-dark: rgba(255,255,255,0.08);
+    --mono: 'Space Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+    --radius: 16px;
+    --radius-sm: 8px;
+    --shadow-card: 0 2px 24px rgba(10,13,20,0.08), 0 0 0 1px rgba(10,13,20,0.04);
+    --shadow-hover: 0 12px 48px rgba(10,13,20,0.14), 0 0 0 1px rgba(10,13,20,0.06);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--white);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── UTILITIES ─────────────────────────────────── */
+  .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+  .tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--mono); font-size: 11px; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase;
+    background: var(--accent-glow); color: var(--accent);
+    padding: 6px 12px; border-radius: 100px;
+    border: 1px solid rgba(0,87,255,0.2);
+  }
+  .tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent); color: #fff;
+    font-family: var(--sans); font-size: 15px; font-weight: 600;
+    padding: 14px 28px; border-radius: 100px;
+    border: none; cursor: pointer; text-decoration: none;
+    transition: background .2s, transform .2s, box-shadow .2s;
+    box-shadow: 0 4px 20px rgba(0,87,255,0.3);
+  }
+  .btn-primary:hover { background: var(--accent-dim); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,87,255,0.35); }
+  .btn-primary svg { transition: transform .2s; }
+  .btn-primary:hover svg { transform: translateX(3px); }
+
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--ink);
+    font-family: var(--sans); font-size: 14px; font-weight: 500;
+    padding: 11px 22px; border-radius: 100px;
+    border: 1.5px solid var(--border); cursor: pointer; text-decoration: none;
+    transition: border-color .2s, background .2s;
+  }
+  .btn-ghost:hover { border-color: var(--accent); background: var(--accent-glow); color: var(--accent); }
+
+  /* ─── HEADER ─────────────────────────────────────── */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow .3s;
+  }
+  header.scrolled { box-shadow: 0 4px 24px rgba(10,13,20,0.06); }
+  .header-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none; color: var(--ink);
+  }
+  .logo-mark {
+    width: 36px; height: 36px; background: var(--ink);
+    border-radius: 9px; display: flex; align-items: center; justify-content: center;
+  }
+  .logo-mark svg { width: 20px; height: 20px; }
+  .logo-text { font-family: var(--mono); font-size: 13px; font-weight: 700; line-height: 1.2; }
+  .logo-text span { display: block; font-size: 10px; font-weight: 400; color: var(--ink-soft); letter-spacing: .04em; }
+  .header-nav { display: flex; align-items: center; gap: 32px; }
+  .header-nav a {
+    font-size: 14px; font-weight: 500; color: var(--ink-soft);
+    text-decoration: none; transition: color .2s;
+  }
+  .header-nav a:hover { color: var(--accent); }
+  @media(max-width:768px){ .header-nav { display:none; } }
+
+  /* ─── HERO ───────────────────────────────────────── */
+  .hero {
+    padding: 120px 0 80px;
+    background: linear-gradient(160deg, #f7f9ff 0%, #fff 50%, #f4f5f7 100%);
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(0,87,255,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; gap: 64px;
+  }
+  @media(max-width:900px){ .hero-grid { grid-template-columns:1fr; gap:48px; } }
+  .hero-copy { position: relative; z-index: 1; }
+  .hero-eyebrow { margin-bottom: 24px; }
+  .hero-title {
+    font-size: clamp(36px, 5vw, 58px);
+    font-weight: 700; line-height: 1.08;
+    letter-spacing: -.03em;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  .hero-title em { font-style: normal; color: var(--accent); }
+  .hero-sub {
+    font-size: 17px; color: var(--ink-soft); font-weight: 400;
+    max-width: 460px; margin-bottom: 36px; line-height: 1.65;
+  }
+  .hero-ctas { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .hero-proof {
+    margin-top: 40px; padding-top: 28px;
+    border-top: 1px solid var(--border);
+    display: flex; gap: 36px; flex-wrap: wrap;
+  }
+  .proof-item { }
+  .proof-num {
+    font-family: var(--mono); font-size: 26px; font-weight: 700;
+    color: var(--ink); letter-spacing: -.02em;
+  }
+  .proof-label { font-size: 12px; color: var(--ink-soft); font-weight: 500; margin-top: 2px; }
+  .hero-visual { position: relative; }
+  .hero-img-wrap {
+    border-radius: 24px; overflow: hidden;
+    box-shadow: 0 32px 80px rgba(10,13,20,0.15);
+    position: relative;
+  }
+  .hero-img-wrap img { width: 100%; display: block; aspect-ratio: 4/5; object-fit: cover; }
+  .hero-badge {
+    position: absolute; top: 20px; left: -20px;
+    background: var(--white); border-radius: var(--radius);
+    padding: 12px 16px; box-shadow: var(--shadow-card);
+    display: flex; align-items: center; gap: 10px;
+    animation: float 4s ease-in-out infinite;
+  }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+  .badge-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green); flex-shrink:0; }
+  .badge-text { font-size: 12px; font-weight: 600; color: var(--ink); line-height: 1.3; }
+  .badge-text span { display: block; font-size: 11px; font-weight: 400; color: var(--ink-soft); }
+  .hero-badge2 {
+    position: absolute; bottom: 32px; right: -16px;
+    background: var(--ink); border-radius: var(--radius);
+    padding: 14px 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    animation: float 4s ease-in-out infinite .5s;
+  }
+  .badge2-label { font-family: var(--mono); font-size: 10px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: .06em; }
+  .badge2-val { font-family: var(--mono); font-size: 20px; font-weight: 700; color: var(--white); margin-top: 2px; }
+  .badge2-val span { color: var(--green); }
+
+  /* ─── SECTION COMMONS ────────────────────────────── */
+  section { padding: 96px 0; }
+  .section-header { text-align: center; margin-bottom: 64px; }
+  .section-header .tag { margin-bottom: 16px; }
+  .section-title {
+    font-size: clamp(28px, 4vw, 44px); font-weight: 700;
+    letter-spacing: -.025em; line-height: 1.12;
+    color: var(--ink); margin-bottom: 16px;
+  }
+  .section-sub { font-size: 17px; color: var(--ink-soft); max-width: 560px; margin: 0 auto; }
+
+  /* ─── FEATURES (PROBLEM/SOLUTION) ───────────────── */
+  .features-wrap {
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; gap: 72px;
+  }
+  @media(max-width:900px){ .features-wrap { grid-template-columns:1fr; gap:48px; } }
+  .features-img {
+    border-radius: 24px; overflow: hidden;
+    box-shadow: var(--shadow-hover);
+  }
+  .features-img img { width: 100%; display: block; object-fit: cover; }
+  .feature-list { display: flex; flex-direction: column; gap: 24px; }
+  .feature-card {
+    padding: 24px; border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--white);
+    box-shadow: var(--shadow-card);
+    display: flex; gap: 18px; align-items: flex-start;
+    transition: box-shadow .25s, transform .25s;
+    cursor: default;
+  }
+  .feature-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+  .feature-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 20px;
+  }
+  .fi-blue { background: rgba(0,87,255,0.1); }
+  .fi-green { background: rgba(0,201,107,0.1); }
+  .fi-amber { background: rgba(255,179,0,0.1); }
+  .feature-card h3 { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 5px; }
+  .feature-card p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+
+  /* ─── SMART DESIGN ───────────────────────────────── */
+  .smart { background: var(--ink); color: var(--white); }
+  .smart .section-title { color: var(--white); }
+  .smart .section-sub { color: rgba(255,255,255,0.6); }
+  .smart .tag { background: rgba(0,87,255,0.25); border-color: rgba(0,87,255,0.35); color: #6699ff; }
+  .smart .tag::before { background: #6699ff; }
+
+  .smart-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; gap: 72px;
+  }
+  @media(max-width:900px){ .smart-grid { grid-template-columns:1fr; gap:48px; } }
+  .smart-visual {
+    position: relative;
+  }
+  .smart-img {
+    border-radius: 24px; overflow: hidden;
+    box-shadow: 0 32px 64px rgba(0,0,0,0.5);
+  }
+  .smart-img img { width: 100%; display: block; object-fit: cover; }
+
+  .reading-demo {
+    position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 10px;
+  }
+  .rdg {
+    padding: 8px 14px; border-radius: 100px;
+    font-family: var(--mono); font-size: 12px; font-weight: 700;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .rdg-dot { width: 7px; height: 7px; border-radius: 50%; }
+  .rdg-ok { background: rgba(0,201,107,0.15); color: var(--green); border: 1px solid rgba(0,201,107,0.3); }
+  .rdg-ok .rdg-dot { background: var(--green); }
+  .rdg-hi { background: rgba(255,179,0,0.15); color: var(--amber); border: 1px solid rgba(255,179,0,0.3); }
+  .rdg-hi .rdg-dot { background: var(--amber); }
+  .rdg-sc { background: rgba(255,59,59,0.15); color: var(--red); border: 1px solid rgba(255,59,59,0.3); }
+  .rdg-sc .rdg-dot { background: var(--red); }
+
+  .smart-points { display: flex; flex-direction: column; gap: 28px; }
+  .smart-point { display: flex; gap: 18px; }
+  .sp-num {
+    font-family: var(--mono); font-size: 11px; font-weight: 700;
+    color: var(--accent); background: rgba(0,87,255,0.2);
+    width: 28px; height: 28px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .smart-point h3 { font-size: 16px; font-weight: 600; color: var(--white); margin-bottom: 6px; }
+  .smart-point p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.65; }
+
+  /* ─── COMPATIBILITY ──────────────────────────────── */
+  .compat { background: linear-gradient(135deg, #f0f4ff 0%, #e8f0fe 100%); }
+  .compat-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; gap: 72px;
+  }
+  @media(max-width:900px){ .compat-inner { grid-template-columns:1fr; gap:48px; } }
+  .compat-img { border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-hover); }
+  .compat-img img { width: 100%; display: block; object-fit: cover; }
+
+  .compat-copy .tag { margin-bottom: 20px; }
+  .compat-copy .section-title { text-align: left; margin-bottom: 16px; }
+  .compat-copy .section-sub { text-align: left; margin: 0 0 32px; }
+
+  .chip-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
+  .chip {
+    font-family: var(--mono); font-size: 12px; font-weight: 700;
+    padding: 7px 14px; border-radius: 100px;
+    border: 1.5px solid rgba(0,87,255,0.2);
+    color: var(--accent); background: rgba(0,87,255,0.06);
+    transition: background .2s, border-color .2s;
+  }
+  .chip:hover { background: rgba(0,87,255,0.12); border-color: rgba(0,87,255,0.4); }
+  .chip.dark { background: var(--ink); color: var(--white); border-color: var(--ink); }
+
+  .compat-stat {
+    display: flex; gap: 32px; padding: 24px;
+    background: var(--white); border-radius: var(--radius);
+    box-shadow: var(--shadow-card);
+  }
+  .cs-item { text-align: center; }
+  .cs-num { font-family: var(--mono); font-size: 28px; font-weight: 700; color: var(--ink); }
+  .cs-label { font-size: 11px; color: var(--ink-soft); font-weight: 500; margin-top: 3px; text-transform: uppercase; letter-spacing: .04em; }
+  .cs-div { width: 1px; background: var(--border); }
+
+  /* ─── WHAT'S IN THE BOX ──────────────────────────── */
+  .box-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media(max-width:768px){ .box-grid { grid-template-columns:1fr; } }
+
+  .box-card {
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--white);
+    box-shadow: var(--shadow-card);
+    transition: box-shadow .25s, transform .25s;
+  }
+  .box-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-4px); }
+  .box-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+  .box-card-body { padding: 20px; }
+  .box-card-body h3 { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+  .box-card-body p { font-size: 13px; color: var(--ink-soft); line-height: 1.6; }
+  .box-card-body .mono-tag {
+    display: inline-block; font-family: var(--mono); font-size: 10px;
+    color: var(--accent); background: var(--accent-glow);
+    padding: 3px 8px; border-radius: 4px; margin-bottom: 10px;
+  }
+
+  /* Cables section */
+  .cables-section { background: var(--mist); }
+  .cables-header { text-align: center; margin-bottom: 48px; }
+  .cable-table {
+    background: var(--white); border-radius: var(--radius);
+    overflow: hidden; box-shadow: var(--shadow-card);
+    border: 1px solid var(--border);
+  }
+  .cable-row {
+    display: grid; grid-template-columns: 2fr 1fr 2fr;
+    padding: 18px 24px; align-items: center;
+    border-bottom: 1px solid var(--border);
+    transition: background .15s;
+  }
+  .cable-row:last-child { border-bottom: none; }
+  .cable-row:hover { background: var(--mist); }
+  .cable-row.header-row {
+    background: var(--ink); color: var(--white);
+    font-family: var(--mono); font-size: 11px; font-weight: 700;
+    letter-spacing: .06em; text-transform: uppercase;
+  }
+  .cable-name { font-size: 13px; font-weight: 600; color: var(--ink); }
+  .cable-pin {
+    font-family: var(--mono); font-size: 11px; font-weight: 700;
+    color: var(--accent); background: var(--accent-glow);
+    padding: 3px 8px; border-radius: 4px; display: inline-block;
+  }
+  .cable-compat { font-size: 12px; color: var(--ink-soft); }
+  .cable-compat strong { color: var(--ink); font-weight: 600; }
+  @media(max-width:640px){
+    .cable-row { grid-template-columns:1fr; gap:6px; }
+    .cable-row.header-row { display:none; }
+  }
+
+  /* ─── SPECS BAR ──────────────────────────────────── */
+  .specs-bar { background: var(--ink); color: var(--white); padding: 48px 0; }
+  .specs-inner {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; background: rgba(255,255,255,0.08);
+    border-radius: var(--radius); overflow: hidden;
+  }
+  @media(max-width:640px){ .specs-inner { grid-template-columns:1fr 1fr; } }
+  .spec-item {
+    padding: 28px 24px; background: var(--ink);
+    text-align: center;
+  }
+  .spec-val { font-family: var(--mono); font-size: 22px; font-weight: 700; color: var(--white); }
+  .spec-lbl { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 5px; text-transform: uppercase; letter-spacing: .05em; }
+
+  /* ─── FINAL CTA ──────────────────────────────────── */
+  .final-cta {
+    background: linear-gradient(135deg, var(--ink) 0%, #0d1a3a 100%);
+    color: var(--white); text-align: center;
+    padding: 120px 0;
+    position: relative; overflow: hidden;
+  }
+  .final-cta::before {
+    content: '';
+    position: absolute; top: -300px; left: 50%; transform: translateX(-50%);
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(0,87,255,0.12) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .final-cta .tag { margin-bottom: 24px; background: rgba(0,87,255,0.25); border-color: rgba(0,87,255,0.35); color: #6699ff; }
+  .final-cta .tag::before { background: #6699ff; }
+  .final-title {
+    font-size: clamp(32px, 5vw, 52px); font-weight: 700;
+    letter-spacing: -.03em; line-height: 1.08;
+    color: var(--white); margin-bottom: 18px;
+  }
+  .final-sub { font-size: 17px; color: rgba(255,255,255,0.55); margin-bottom: 48px; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .final-ctas { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+  .btn-white {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--white); color: var(--ink);
+    font-family: var(--sans); font-size: 15px; font-weight: 700;
+    padding: 15px 32px; border-radius: 100px;
+    border: none; cursor: pointer; text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 4px 20px rgba(255,255,255,0.15);
+  }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(255,255,255,0.2); }
+  .btn-outline-white {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: rgba(255,255,255,0.8);
+    font-family: var(--sans); font-size: 15px; font-weight: 500;
+    padding: 14px 28px; border-radius: 100px;
+    border: 1.5px solid rgba(255,255,255,0.2); cursor: pointer; text-decoration: none;
+    transition: border-color .2s, background .2s;
+  }
+  .btn-outline-white:hover { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.05); }
+
+  .contact-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px; margin-top: 64px; max-width: 800px; margin-left: auto; margin-right: auto;
+  }
+  @media(max-width:640px){ .contact-grid { grid-template-columns:1fr; } }
+  .contact-card {
+    padding: 24px; border-radius: var(--radius);
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.04);
+    text-align: center;
+  }
+  .contact-card .icon { font-size: 24px; margin-bottom: 12px; }
+  .contact-card h4 { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+  .contact-card p { font-size: 13px; color: rgba(255,255,255,0.4); }
+
+  /* ─── FOOTER ─────────────────────────────────────── */
+  footer {
+    background: #060810; color: rgba(255,255,255,0.4);
+    padding: 32px 0; text-align: center;
+    font-size: 13px;
+  }
+  footer strong { color: rgba(255,255,255,0.7); }
+
+  /* ─── ANIMATIONS ─────────────────────────────────── */
+  .fade-up {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .fade-up:nth-child(2){ transition-delay:.1s; }
+  .fade-up:nth-child(3){ transition-delay:.2s; }
+  .fade-up:nth-child(4){ transition-delay:.3s; }
+
+  /* ─── DIVIDER ─────────────────────────────────────── */
+  .divider { height: 1px; background: var(--border); }
+
+  /* ticker */
+  .ticker-wrap { background: var(--accent); overflow: hidden; padding: 12px 0; }
+  .ticker {
+    display: flex; gap: 0; white-space: nowrap;
+    animation: ticker 20s linear infinite;
+  }
+  .ticker-item {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: var(--mono); font-size: 12px; font-weight: 700;
+    color: rgba(255,255,255,0.9); padding: 0 40px;
+    letter-spacing: .04em; text-transform: uppercase;
+  }
+  .ticker-item::after { content: '·'; opacity: .5; }
+  @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+</style>
+</head>
+<body>
+
+<!-- ─── HEADER ─────────────────────────────────────── -->
+<header id="site-header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="#" class="logo">
+        <div class="logo-mark">
+          <svg viewBox="0 0 20 20" fill="none">
+            <rect x="2" y="4" width="16" height="12" rx="2" stroke="white" stroke-width="1.5"/>
+            <circle cx="14" cy="10" r="2.5" fill="white" opacity=".6"/>
+            <line x1="4" y1="7" x2="9" y2="7" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+            <line x1="4" y1="10" x2="9" y2="10" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+            <line x1="4" y1="13" x2="7" y2="13" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="logo-text">S-UEM3 PRO<span>by SoFix</span></div>
+      </a>
+      <nav class="header-nav">
+        <a href="#features">Features</a>
+        <a href="#compatibility">Compatibility</a>
+        <a href="#cables">Cables</a>
+        <a href="#specs">Specs</a>
+      </nav>
+      <a href="#contact" class="btn-primary" style="font-size:13px;padding:10px 20px;">
+        Get Pricing
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ─── TICKER ─────────────────────────────────────── -->
+<div class="ticker-wrap" style="margin-top:64px;">
+  <div class="ticker">
+    <span class="ticker-item">2016–2025 MacBook Coverage</span>
+    <span class="ticker-item">T1 · T2 · M1 · M2 · M3 · M4</span>
+    <span class="ticker-item">USB-C · EDP Display · Backlight · Camera</span>
+    <span class="ticker-item">High · Low · Short Circuit Detection</span>
+    <span class="ticker-item">5V Type-C Powered</span>
+    <span class="ticker-item">LED Touchscreen Interface</span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item">2016–2025 MacBook Coverage</span>
+    <span class="ticker-item">T1 · T2 · M1 · M2 · M3 · M4</span>
+    <span class="ticker-item">USB-C · EDP Display · Backlight · Camera</span>
+    <span class="ticker-item">High · Low · Short Circuit Detection</span>
+    <span class="ticker-item">5V Type-C Powered</span>
+    <span class="ticker-item">LED Touchscreen Interface</span>
+  </div>
+</div>
+
+<!-- ─── HERO ───────────────────────────────────────── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="hero-eyebrow"><span class="tag">MacBook Fault Diagnostics</span></div>
+        <h1 class="hero-title fade-up">Stop Guessing.<br>Start <em>Repairing.</em></h1>
+        <p class="hero-sub fade-up">The S-UEM3 PRO is the professional-grade connector fault detector that tells you <em>exactly</em> where a MacBook motherboard is broken — in seconds, not hours.</p>
+        <div class="hero-ctas fade-up">
+          <a href="#contact" class="btn-primary">
+            Request Wholesale Pricing
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#features" class="btn-ghost">See How It Works</a>
+        </div>
+        <div class="hero-proof fade-up">
+          <div class="proof-item">
+            <div class="proof-num">9yr</div>
+            <div class="proof-label">MacBook Coverage<br>2016 – 2025</div>
+          </div>
+          <div class="proof-item">
+            <div class="proof-num">6</div>
+            <div class="proof-label">Chip Generations<br>T1, T2, M1–M4</div>
+          </div>
+          <div class="proof-item">
+            <div class="proof-num">4</div>
+            <div class="proof-label">Connector Types<br>USB-C, EDP, BL, Cam</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual fade-up">
+        <div class="hero-img-wrap">
+          <img src="1_01.jpg" alt="S-UEM3 PRO Main Device — MacBook Motherboard Fault Detector">
+        </div>
+        <div class="hero-badge">
+          <div class="badge-dot"></div>
+          <div class="badge-text">Pre-loaded reference values<span>for every supported model</span></div>
+        </div>
+        <div class="hero-badge2">
+          <div class="badge2-label">Diagnosis Result</div>
+          <div class="badge2-val">SHORT <span>CIRCUIT</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FEATURES ──────────────────────────────────── -->
+<section id="features">
+  <div class="container">
+    <div class="section-header">
+      <span class="tag">Core Capabilities</span>
+      <h2 class="section-title">Three critical fault areas.<br>One tool.</h2>
+      <p class="section-sub">Traditional multimeters leave you hunting. The S-UEM3 PRO knows exactly what the value <em>should</em> be — and tells you where it isn't.</p>
+    </div>
+    <div class="features-wrap">
+      <div class="features-img fade-up">
+        <img src="1_02.jpg" alt="S-UEM3 PRO in use">
+      </div>
+      <div class="feature-list">
+        <div class="feature-card fade-up">
+          <div class="feature-icon fi-blue">⚡</div>
+          <div>
+            <h3>USB-C Power Boost Faults (5V–20V)</h3>
+            <p>Instantly pinpoint fault locations in the USB-C power delivery path. No more probing blind — connect the right cable and the tester flags the deviation immediately.</p>
+          </div>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon fi-amber">🖥</div>
+          <div>
+            <h3>No-Display &amp; Camera Malfunctions</h3>
+            <p>Connect via the EDP display connector to diagnose black screen or dead camera issues at the logic board level. Works across 48-pin (T1/T2/M1) and 38-pin (M2/M3/M4) connectors.</p>
+          </div>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon fi-green">🔆</div>
+          <div>
+            <h3>Backlight Circuit Diagnostics</h3>
+            <p>Utilize the JP900 connector interface to rapidly isolate backlight faults on M2, M3, and M4 models — a notoriously time-consuming problem to trace manually.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SMART DESIGN ──────────────────────────────── -->
+<section id="smart" class="smart">
+  <div class="container">
+    <div class="smart-grid">
+      <div class="smart-visual fade-up">
+        <div class="smart-img">
+          <img src="1_04.jpg" alt="S-UEM3 PRO Cable Kit">
+        </div>
+        <div class="reading-demo">
+          <div class="rdg rdg-ok"><div class="rdg-dot"></div>NORMAL</div>
+          <div class="rdg rdg-hi"><div class="rdg-dot"></div>HIGH</div>
+          <div class="rdg rdg-sc"><div class="rdg-dot"></div>SHORT</div>
+        </div>
+      </div>
+      <div class="smart-points">
+        <div style="margin-bottom:8px;">
+          <span class="tag">Smart Design</span>
+          <h2 class="section-title" style="text-align:left;color:white;margin-top:16px;">Built by board-level technicians. For board-level technicians.</h2>
+        </div>
+        <div class="smart-point fade-up">
+          <div class="sp-num">01</div>
+          <div>
+            <h3>Pre-Loaded Reference Values</h3>
+            <p>Normal connector values for every MacBook model from 2016 to 2025 are factory-written into the host. Zero calibration. Zero lookup tables. Pick the model, plug in, read the result.</p>
+          </div>
+        </div>
+        <div class="smart-point fade-up">
+          <div class="sp-num">02</div>
+          <div>
+            <h3>Unambiguous 3-State Readout</h3>
+            <p>Results are never vague. The LED touchscreen explicitly displays <strong style="color:var(--amber)">HIGH</strong>, <strong style="color:rgba(255,255,255,0.8)">LOW</strong>, or <strong style="color:var(--red)">SHORT CIRCUIT</strong> — so junior and senior techs alike know exactly what to do next.</p>
+          </div>
+        </div>
+        <div class="smart-point fade-up">
+          <div class="sp-num">03</div>
+          <div>
+            <h3>5V Type-C Power · Field Ready</h3>
+            <p>Compact at 107×92×23mm and weighing just 303g, the S-UEM3 PRO runs off any USB-C power bank. Take it anywhere. No bench power supply required.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── COMPATIBILITY ────────────────────────────── -->
+<section id="compatibility" class="compat">
+  <div class="container">
+    <div class="compat-inner">
+      <div class="compat-img fade-up">
+        <img src="1_06.jpg" alt="MacBook compatibility — 2016 to 2025">
+      </div>
+      <div class="compat-copy fade-up">
+        <span class="tag">Universal Coverage</span>
+        <h2 class="section-title">One tester.<br>Nine years of MacBooks.</h2>
+        <p class="section-sub">From Intel-era T1/T2 boards to the latest Apple Silicon M4 models — every MacBook Air and MacBook Pro motherboard in your queue is covered.</p>
+        <div class="chip-grid">
+          <span class="chip dark">Intel T1</span>
+          <span class="chip dark">Intel T2</span>
+          <span class="chip">Apple M1</span>
+          <span class="chip">Apple M2</span>
+          <span class="chip">Apple M3</span>
+          <span class="chip">Apple M4</span>
+          <span class="chip">MacBook Air</span>
+          <span class="chip">MacBook Pro</span>
+          <span class="chip">2016 – 2025</span>
+        </div>
+        <div class="compat-stat">
+          <div class="cs-item">
+            <div class="cs-num">2016</div>
+            <div class="cs-label">Earliest Model</div>
+          </div>
+          <div class="cs-div"></div>
+          <div class="cs-item">
+            <div class="cs-num">2025</div>
+            <div class="cs-label">Latest Model</div>
+          </div>
+          <div class="cs-div"></div>
+          <div class="cs-item">
+            <div class="cs-num">6+</div>
+            <div class="cs-label">Chip Generations</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHAT'S IN THE BOX ─────────────────────────── -->
+<section id="box">
+  <div class="container">
+    <div class="section-header">
+      <span class="tag">Complete Kit</span>
+      <h2 class="section-title">Everything you need.<br>Day one.</h2>
+      <p class="section-sub">The S-UEM3 PRO kit ships ready to test. One host, five purpose-built cables, one conversion board.</p>
+    </div>
+    <div class="box-grid">
+      <div class="box-card fade-up">
+        <img src="1_09.jpg" alt="S-UEM3 PRO Host Unit">
+        <div class="box-card-body">
+          <div class="mono-tag">INCLUDED × 1</div>
+          <h3>S-UEM3 PRO Host</h3>
+          <p>LED touchscreen diagnostics unit with pre-loaded reference values, USB-C power input, and on-board conversion board interface.</p>
+        </div>
+      </div>
+      <div class="box-card fade-up">
+        <img src="1_07.jpg" alt="5 Diagnostic Cables">
+        <div class="box-card-body">
+          <div class="mono-tag">INCLUDED × 5</div>
+          <h3>Diagnostic Flex Cables</h3>
+          <p>Five model-specific cables covering EDP Display (38-pin &amp; 48-pin), USB-C Left &amp; Right ports, Camera (JP400), and Backlight (JP900) connectors.</p>
+        </div>
+      </div>
+      <div class="box-card fade-up">
+        <img src="1_08.jpg" alt="Conversion Board and Cables">
+        <div class="box-card-body">
+          <div class="mono-tag">INCLUDED × 1</div>
+          <h3>Conversion Board</h3>
+          <p>Precision green conversion board that interfaces with the host unit. Secure four-screw mount ensures clean, reliable contact for every measurement.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CABLES TABLE ──────────────────────────────── -->
+<section id="cables" class="cables-section">
+  <div class="container">
+    <div class="cables-header">
+      <span class="tag">Cable Reference</span>
+      <h2 class="section-title" style="margin-top:16px;">Right cable. Right model. Every time.</h2>
+      <p class="section-sub">Each cable is silkscreened with its connector ID so there's no guesswork. Select your model, grab the cable, test.</p>
+    </div>
+    <div class="cable-table">
+      <div class="cable-row header-row">
+        <div>Cable / Connector</div>
+        <div>Pins</div>
+        <div>Compatible Models</div>
+      </div>
+      <div class="cable-row">
+        <div class="cable-name">J8500 / JP600 EDP Display Connector</div>
+        <div><span class="cable-pin">48 PIN</span></div>
+        <div class="cable-compat"><strong>T1, T2, M1</strong> — Display connector</div>
+      </div>
+      <div class="cable-row">
+        <div class="cable-name">JP600 EDP Display Connector</div>
+        <div><span class="cable-pin">38 PIN</span></div>
+        <div class="cable-compat"><strong>M2, M3, M4</strong> — Display connector</div>
+      </div>
+      <div class="cable-row">
+        <div class="cable-name">JP400 Camera · JG600/JE900 Right USB-C · JF600/JF601/JE700/JE701 Left USB-C</div>
+        <div><span class="cable-pin">MULTI</span></div>
+        <div class="cable-compat"><strong>M2, M3, M4</strong> — Camera + Left/Right USB-C</div>
+      </div>
+      <div class="cable-row">
+        <div class="cable-name">J3300 / J3300_CXT / JF600 / JE700 Left USB-C · JP900 Backlight</div>
+        <div><span class="cable-pin">MULTI</span></div>
+        <div class="cable-compat"><strong>T1, T2, M1</strong> Left USB-C &nbsp;|&nbsp; <strong>M2, M3, M4</strong> Backlight</div>
+      </div>
+      <div class="cable-row">
+        <div class="cable-name">JB500 / J3300_CWR Right USB-C · A2681 A3113 A3240 JP600 Display</div>
+        <div><span class="cable-pin">MULTI</span></div>
+        <div class="cable-compat"><strong>T1, T2, M1</strong> Right USB-C &nbsp;|&nbsp; <strong>AIR M2, M3, M4</strong> Display</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SPECS BAR ──────────────────────────────────── -->
+<div class="specs-bar" id="specs">
+  <div class="container">
+    <div class="specs-inner">
+      <div class="spec-item">
+        <div class="spec-val">107×92×23</div>
+        <div class="spec-lbl">Dimensions (mm)</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-val">303g</div>
+        <div class="spec-lbl">Weight</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-val">5V USB-C</div>
+        <div class="spec-lbl">Power Input</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-val">5 Cables</div>
+        <div class="spec-lbl">Included in Kit</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── FINAL CTA ──────────────────────────────────── -->
+<section id="contact" class="final-cta">
+  <div class="container">
+    <span class="tag">Upgrade Your Workbench</span>
+    <h2 class="final-title">Your competitors are already<br>diagnosing faster than you.</h2>
+    <p class="final-sub">Contact us for wholesale pricing, bulk orders, and dealer inquiries. The S-UEM3 PRO delivers a measurable ROI from the very first board you test.</p>
+    <div class="final-ctas">
+      <a href="mailto:sales@sofix.com" class="btn-white">
+        📩 &nbsp;Contact Sales for Pricing
+      </a>
+      <a href="#features" class="btn-outline-white">View Full Specs</a>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="icon">📦</div>
+        <h4>Wholesale &amp; Bulk Orders</h4>
+        <p>Volume pricing available for repair shops and distributors</p>
+      </div>
+      <div class="contact-card">
+        <div class="icon">🚚</div>
+        <h4>Global Shipping</h4>
+        <p>Fast international fulfillment with full tracking</p>
+      </div>
+      <div class="contact-card">
+        <div class="icon">🛠</div>
+        <h4>Technical Support</h4>
+        <p>Dedicated after-sales support from experienced technicians</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <p>© 2025 <strong>SoFix</strong> · S-UEM3 PRO Mac Fault Diagnostic Tester &nbsp;·&nbsp; All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- ─── SCRIPTS ───────────────────────────────────── -->
+<script>
+  // Header scroll shadow
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Intersection Observer for fade-up
+  const faders = document.querySelectorAll('.fade-up');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  faders.forEach(f => obs.observe(f));
+
+  // Immediately make hero elements visible
+  document.querySelectorAll('.hero .fade-up').forEach((el, i) => {
+    setTimeout(() => el.classList.add('visible'), i * 120);
+  });
+</script>
+</body>
+</html>
