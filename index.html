@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>S-UEM3 PRO — MacBook Fault Diagnostic Tester | SoFix</title>
 
 <!-- SEO -->
-<meta name="description" content="S-UEM3 PRO is a professional MacBook motherboard connector fault detector. Covers 2016–2025 MacBook Air & Pro — T1, T2, M1, M2, M3, M4. Diagnose USB-C, display, camera, and backlight faults in seconds.">
+<meta name="description" content="S-UEM3 PRO is a professional MacBook motherboard connector fault detector. Covers 2016–2025 MacBook Air & Pro — T1, T2, M1, M2, M3, M4. Diagnose USB-C, display, camera & backlight faults instantly.">
 <meta name="keywords" content="MacBook fault detector, logic board repair, MacBook diagnostic tool, EDP connector tester, USB-C fault, MacBook repair tool, S-UEM3 PRO, SoFix">
 
 <!-- Open Graph (Facebook, WhatsApp, WeChat, LINE) -->
@@ -24,9 +25,34 @@
 <meta name="twitter:title" content="S-UEM3 PRO — MacBook Fault Diagnostic Tester">
 <meta name="twitter:description" content="Professional connector fault detector for 2016–2025 MacBook. Covers T1, T2, M1–M4.">
 <meta name="twitter:image" content="https://itslh1024.github.io/s-uem3-pro/1_01.jpg">
+
+<!-- Preconnect to fonts for performance -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- Preload critical images -->
+<link rel="preload" as="image" href="1_01.jpg">
+
+<!-- Schema.org Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "S-UEM3 PRO",
+  "description": "Professional MacBook motherboard connector fault detector for 2016–2025 MacBooks",
+  "brand": {
+    "@type": "Brand",
+    "name": "SoFix"
+  },
+  "image": "https://itslh1024.github.io/s-uem3-pro/1_01.jpg",
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
+  }
+}
+</script>
 
 <style>
   :root {
@@ -131,6 +157,8 @@
   .header-nav a:hover { color: var(--accent); }
   @media(max-width:768px){ .header-nav { display:none; } }
 
+  .header-cta-btn { font-size: 13px; padding: 10px 20px; }
+
   /* ─── HERO ───────────────────────────────────────── */
   .hero {
     padding: 120px 0 80px;
@@ -168,6 +196,9 @@
     margin-top: 40px; padding-top: 28px;
     border-top: 1px solid var(--border);
     display: flex; gap: 36px; flex-wrap: wrap;
+  }
+  @media(max-width:640px){
+    .hero-proof { gap: 24px; }
   }
   .proof-item { }
   .proof-num {
@@ -296,6 +327,10 @@
   }
   .smart-point h3 { font-size: 16px; font-weight: 600; color: var(--white); margin-bottom: 6px; }
   .smart-point p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.65; }
+
+  .smart-header { margin-bottom: 8px; }
+  .smart-header .tag { margin-bottom: 0; }
+  .smart-header .section-title { text-align: left; color: white; margin-top: 16px; }
 
   /* ─── COMPATIBILITY ──────────────────────────────── */
   .compat { background: linear-gradient(135deg, #f0f4ff 0%, #e8f0fe 100%); }
@@ -455,7 +490,7 @@
     display: grid; grid-template-columns: repeat(3, 1fr);
     gap: 20px; margin-top: 64px; max-width: 800px; margin-left: auto; margin-right: auto;
   }
-  @media(max-width:640px){ .contact-grid { grid-template-columns:1fr; } }
+  @media(max-width:640px){ .contact-grid { grid-template-columns:1fr; gap:16px; } }
   .contact-card {
     padding: 24px; border-radius: var(--radius);
     border: 1px solid rgba(255,255,255,0.08);
@@ -506,7 +541,7 @@
 <body>
 
 <!-- ─── HEADER ─────────────────────────────────────── -->
-<header id="site-header">
+<header id="site-header" role="banner">
   <div class="container">
     <div class="header-inner">
       <a href="#" class="logo">
@@ -521,13 +556,13 @@
         </div>
         <div class="logo-text">S-UEM3 PRO<span>by SoFix</span></div>
       </a>
-      <nav class="header-nav">
+      <nav class="header-nav" role="navigation">
         <a href="#features">Features</a>
         <a href="#compatibility">Compatibility</a>
         <a href="#cables">Cables</a>
         <a href="#specs">Specs</a>
       </nav>
-      <a href="#contact" class="btn-primary" style="font-size:13px;padding:10px 20px;">
+      <a href="#contact" class="btn-primary header-cta-btn" aria-label="Get Pricing">
         Get Pricing
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
@@ -536,7 +571,7 @@
 </header>
 
 <!-- ─── TICKER ─────────────────────────────────────── -->
-<div class="ticker-wrap" style="margin-top:64px;">
+<div class="ticker-wrap">
   <div class="ticker">
     <span class="ticker-item">2016–2025 MacBook Coverage</span>
     <span class="ticker-item">T1 · T2 · M1 · M2 · M3 · M4</span>
@@ -586,7 +621,7 @@
       </div>
       <div class="hero-visual fade-up">
         <div class="hero-img-wrap">
-          <img src="1_01.jpg" alt="S-UEM3 PRO Main Device — MacBook Motherboard Fault Detector">
+          <img src="1_01.jpg" alt="S-UEM3 PRO Main Device — MacBook Motherboard Fault Detector" loading="lazy">
         </div>
         <div class="hero-badge">
           <div class="badge-dot"></div>
@@ -611,7 +646,7 @@
     </div>
     <div class="features-wrap">
       <div class="features-img fade-up">
-        <img src="1_02.jpg" alt="S-UEM3 PRO in use">
+        <img src="1_02.jpg" alt="S-UEM3 PRO in use" loading="lazy">
       </div>
       <div class="feature-list">
         <div class="feature-card fade-up">
@@ -646,7 +681,7 @@
     <div class="smart-grid">
       <div class="smart-visual fade-up">
         <div class="smart-img">
-          <img src="1_04.jpg" alt="S-UEM3 PRO Cable Kit">
+          <img src="1_04.jpg" alt="S-UEM3 PRO Cable Kit" loading="lazy">
         </div>
         <div class="reading-demo">
           <div class="rdg rdg-ok"><div class="rdg-dot"></div>NORMAL</div>
@@ -655,9 +690,9 @@
         </div>
       </div>
       <div class="smart-points">
-        <div style="margin-bottom:8px;">
+        <div class="smart-header">
           <span class="tag">Smart Design</span>
-          <h2 class="section-title" style="text-align:left;color:white;margin-top:16px;">Built by board-level technicians. For board-level technicians.</h2>
+          <h2 class="section-title">Built by board-level technicians. For board-level technicians.</h2>
         </div>
         <div class="smart-point fade-up">
           <div class="sp-num">01</div>
@@ -670,7 +705,7 @@
           <div class="sp-num">02</div>
           <div>
             <h3>Unambiguous 3-State Readout</h3>
-            <p>Results are never vague. The LED touchscreen explicitly displays <strong style="color:var(--amber)">HIGH</strong>, <strong style="color:rgba(255,255,255,0.8)">LOW</strong>, or <strong style="color:var(--red)">SHORT CIRCUIT</strong> — so junior and senior techs alike know exactly what to do next.</p>
+            <p>Results are never vague. The LED touchscreen explicitly displays <strong>HIGH</strong>, <strong>LOW</strong>, or <strong>SHORT CIRCUIT</strong> — no interpretation needed.</p>
           </div>
         </div>
         <div class="smart-point fade-up">
@@ -690,7 +725,7 @@
   <div class="container">
     <div class="compat-inner">
       <div class="compat-img fade-up">
-        <img src="1_06.jpg" alt="MacBook compatibility — 2016 to 2025">
+        <img src="1_06.jpg" alt="MacBook compatibility — 2016 to 2025" loading="lazy">
       </div>
       <div class="compat-copy fade-up">
         <span class="tag">Universal Coverage</span>
@@ -738,7 +773,7 @@
     </div>
     <div class="box-grid">
       <div class="box-card fade-up">
-        <img src="1_09.jpg" alt="S-UEM3 PRO Host Unit">
+        <img src="1_09.jpg" alt="S-UEM3 PRO Host Unit" loading="lazy">
         <div class="box-card-body">
           <div class="mono-tag">INCLUDED × 1</div>
           <h3>S-UEM3 PRO Host</h3>
@@ -746,7 +781,7 @@
         </div>
       </div>
       <div class="box-card fade-up">
-        <img src="1_07.jpg" alt="5 Diagnostic Cables">
+        <img src="1_07.jpg" alt="5 Diagnostic Cables" loading="lazy">
         <div class="box-card-body">
           <div class="mono-tag">INCLUDED × 5</div>
           <h3>Diagnostic Flex Cables</h3>
@@ -754,7 +789,7 @@
         </div>
       </div>
       <div class="box-card fade-up">
-        <img src="1_08.jpg" alt="Conversion Board and Cables">
+        <img src="1_08.jpg" alt="Conversion Board and Cables" loading="lazy">
         <div class="box-card-body">
           <div class="mono-tag">INCLUDED × 1</div>
           <h3>Conversion Board</h3>
@@ -770,7 +805,7 @@
   <div class="container">
     <div class="cables-header">
       <span class="tag">Cable Reference</span>
-      <h2 class="section-title" style="margin-top:16px;">Right cable. Right model. Every time.</h2>
+      <h2 class="section-title">Right cable. Right model. Every time.</h2>
       <p class="section-sub">Each cable is silkscreened with its connector ID so there's no guesswork. Select your model, grab the cable, test.</p>
     </div>
     <div class="cable-table">
@@ -832,14 +867,14 @@
   </div>
 </div>
 
-<!-- ─── FINAL CTA ──────────────────────────────────── -->
+<!-- ─── FINAL CTA ───────────────────────��──────────── -->
 <section id="contact" class="final-cta">
   <div class="container">
     <span class="tag">Upgrade Your Workbench</span>
     <h2 class="final-title">Your competitors are already<br>diagnosing faster than you.</h2>
     <p class="final-sub">Contact us for wholesale pricing, bulk orders, and dealer inquiries. The S-UEM3 PRO delivers a measurable ROI from the very first board you test.</p>
     <div class="final-ctas">
-      <a href="mailto:sales@sofix.com" class="btn-white">
+      <a href="mailto:sales@sofix.com" class="btn-white" aria-label="Contact Sales for Pricing">
         📩 &nbsp;Contact Sales for Pricing
       </a>
       <a href="#features" class="btn-outline-white">View Full Specs</a>
@@ -865,7 +900,7 @@
 </section>
 
 <!-- ─── FOOTER ─────────────────────────────────────── -->
-<footer>
+<footer role="contentinfo">
   <div class="container">
     <p>© 2025 <strong>SoFix</strong> · S-UEM3 PRO Mac Fault Diagnostic Tester &nbsp;·&nbsp; All rights reserved.</p>
   </div>
